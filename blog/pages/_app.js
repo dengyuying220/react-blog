@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+// import '../static/style/pages/comm.css'
 import 'antd/dist/antd.css'
 
 

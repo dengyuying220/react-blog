@@ -1,28 +1,31 @@
-.header{
+.header
+{
   background-color: #fff;
-
-  padding: .4rem;
+  // padding: .4rem;
   overflow: hidden;
   height: 2.8rem;
   border-bottom:1px solid #ccc;
 }
-.header-logo{
+.header_logo
+{
   color:#1e90ff;
   font-size: 1.4rem;
   text-align: left;
 
 }
-.header-txt{
+.header_txt{
   font-size: 0.6rem;
   color: #999;
   display: inline-block;
   padding-left: 0.3rem;
 }
-.ant-meu{
+::v-deep .ant-menu
+{
   line-height: 2.6rem;
 
 }
-.ant-menu-item{
+::v-deep .ant-menu-item
+{
   font-size:.7rem !important;
   padding-left:1rem;
   padding-right:1rem;
