@@ -1,17 +1,14 @@
-.header
-{
+.header{
   background-color: #fff;
-  // padding: .4rem;
+  padding: .4rem;
   overflow: hidden;
-  height: 2.8rem;
-  border-bottom:1px solid #ccc;
+  height: 3.2rem;
+  border-bottom:1px solid #eee;
 }
-.header_logo
-{
+.header_logo{
   color:#1e90ff;
   font-size: 1.4rem;
   text-align: left;
-
 }
 .header_txt{
   font-size: 0.6rem;
@@ -19,15 +16,11 @@
   display: inline-block;
   padding-left: 0.3rem;
 }
-::v-deep .ant-menu
-{
-  line-height: 2.6rem;
-
+.ant-meu{
+  line-height: 2.8rem;
 }
-::v-deep .ant-menu-item
-{
-  font-size:.7rem !important;
+.ant-menu-item{
+  font-size:1rem !important;
   padding-left:1rem;
   padding-right:1rem;
-
 }
