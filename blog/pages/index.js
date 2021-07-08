@@ -7,6 +7,9 @@ import {
   FireOutlined,
 } from '@ant-design/icons';
 import Header from '../components/header.js'
+import Author from '../components/Author.js'
+
+import style from '../styles/pages/index.module.scss'
 const Home = () => {
   const [ mylist , setMylist ] = useState(
     [
@@ -30,20 +33,20 @@ const Home = () => {
             dataSource={mylist}
             renderItem={item => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
-                <div className="list-icon">
+                <div className={style.list_title}>{item.title}</div>
+                <div className={style.list_icon}>
                   <span><CalendarOutlined /> 2019-06-28</span>
                   <span><FolderOpenOutlined /> 视频教程</span>
                   <span><FireOutlined /> 5498人</span>
                 </div>
-                <div className="list-context">{item.context}</div>  
+                <div className={style.list_context}>{item.context}</div>  
               </List.Item>
             )}
           >
           </List>
         </Col>
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} >
-          左侧
+          <Author />
         </Col>
       </Row>
    </>

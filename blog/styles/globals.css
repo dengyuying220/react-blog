@@ -1,8 +1,13 @@
 body{
   background-color: #f6f6f6!important;  
 }
-
-
+.comm_box{
+  background-color: #FFF;
+  margin-left: .5rem;
+  padding:.3rem;
+  border-radius: .3rem;
+  border:1px solid #eee;
+}
 .comm-left{
   background-color: #FFF;
   padding:.3rem;

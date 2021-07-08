@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './header.module.scss'
+import style from '../styles/components/header.module.scss'
 import {
     HomeOutlined,
     YoutubeOutlined,
