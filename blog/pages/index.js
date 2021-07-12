@@ -6,8 +6,10 @@ import {
   FolderOpenOutlined,
   FireOutlined,
 } from '@ant-design/icons';
-import Header from '../components/header.js'
+import Header from '../components/Header.js'
 import Author from '../components/Author.js'
+import Footer from '../components/Footer.js'
+
 
 import style from '../styles/pages/index.module.scss'
 const Home = () => {
@@ -49,6 +51,7 @@ const Home = () => {
           <Author />
         </Col>
       </Row>
+      <Footer />
    </>
   )
 }

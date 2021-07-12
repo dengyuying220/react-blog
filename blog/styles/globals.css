@@ -25,3 +25,47 @@ body{
 .comm-main{
   margin-top: .5rem;
 }
+
+/* list */
+.list_title{
+  font-size:1.3rem;
+  color: #1e90ff;
+  padding: 0 0.5rem;
+}
+.list_context{
+  color:#777;
+  padding:.5rem;
+}
+.list_icon{
+  padding:.5rem 0;
+  color:#AAA;
+}
+.list_icon span{
+  display: inline-block;
+  padding: 0 10px;
+}
+/* 面包屑 */
+.breadDiv{
+  padding: .5rem;
+  border-bottom:1px solid #eee;
+  background-color: #e1f0ff;
+}
+/* markdown */
+code {
+  display: block ;
+   background-color:#f3f3f3;
+   padding: .5rem !important;
+   overflow-y: auto;
+   font-weight: 300;
+   font-family: Menlo, monospace;
+   border-radius: .3rem;
+}
+/* head */
+.ant-meu{
+  line-height: 2.8rem !important;
+}
+.ant-menu-item{
+  font-size:1rem !important;
+  padding-left:1rem !important;
+  padding-right:1rem !important;
+}

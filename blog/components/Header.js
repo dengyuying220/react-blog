@@ -26,7 +26,7 @@ const Header = () => {
                         </Menu.Item>
                         <Menu.Item key="video">
                             <YoutubeOutlined />
-                            视频
+                            案例
                         </Menu.Item>
                         <Menu.Item key="life">
                             <SmileOutlined />
