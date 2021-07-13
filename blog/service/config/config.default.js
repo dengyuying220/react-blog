@@ -23,6 +23,26 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  exports.config = {
+    // database configuration
+    client: {
+      // host
+      host: '39.105.86.234',
+      // port
+      port: '3306',
+      // username
+      user: 'root',
+      // password
+      password: 'root',
+      // database
+      database: 'test',    
+    },
+    // load into app, default is open
+    app: true,
+    // load into agent, default is close
+    agent: false,
+  };
+
   return {
     ...config,
     ...userConfig,
