@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import {Row, Col, Breadcrumb} from 'antd'
+import {Row, Col, Breadcrumb, Affix} from 'antd'
 import {
   CalendarOutlined,
   FolderOutlined,
@@ -11,6 +11,8 @@ import Author from '../components/Author.js'
 import Footer from '../components/Footer.js'
 import style from '../styles/pages/detailed.module.scss'
 import ReactMarkdown from 'react-markdown'
+import MarkdownNavbar from 'markdown-navbar';
+import 'markdown-navbar/dist/navbar.css';
 const Detailed = () => {
 
   let markdown='# P01:课程介绍和环境搭建\n' +
@@ -74,8 +76,20 @@ const Detailed = () => {
             </div>
           </div>
         </Col>
-        <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
+        <Col xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
+          <Affix offsetTop={5}>
+            <div className={style.navTitleDiv}>
+              <div className={style.navTitle}>文章目录</div>
+            </div>
+            <div className="comm_right">
+              <MarkdownNavbar
+                // className="comm-box"
+                source={markdown}
+                ordered={false}
+              />
+            </div>
+          </Affix>
         </Col>
       </Row>
       <Footer />

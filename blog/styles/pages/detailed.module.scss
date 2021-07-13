@@ -13,23 +13,20 @@
     padding: 1.3rem;
     font-size: 1rem;
 }
-
-
-.titleAnchor{
-    color:#888 !important;
-    padding:4px !important;
-    margin: 0rem !important;
-    height: auto !important;
-    line-height: 1.2rem !important;
-    font-size: .9rem !important;
-    border-bottom: 1px dashed #eee;
-}
-.active{
-    color:rgb(30, 144, 255) !important;
+.navTitleDiv {
+    margin-left: .6rem;
+    margin-top: .5rem;
+    border-radius: .3rem;
+    margin-bottom: .2rem;
+    overflow: hidden;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #cce4fb;
+    text-align: center;
 }
 .navTitle{
     text-align: center;
-    color: #888;
-    border-bottom: 1px solid rgb(30, 144, 255);
-
+    border-bottom: 1px solid #1890ff;
+    padding-bottom: 10px;
+    color: #1890ff;
 }

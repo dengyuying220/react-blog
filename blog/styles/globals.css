@@ -14,17 +14,17 @@ body{
   border-radius: .3rem;
   border-bottom:1px solid #eee;
 }
-.comm-right{
+.comm_right{
   background-color: #FFF;
   margin-left: .5rem;
   padding:.3rem;
   border-radius: .3rem;
-  border-bottom:1px solid #eee;
-
+  border:1px solid #eee;
 }
 .comm-main{
   margin-top: .5rem;
 }
+
 
 /* list */
 .list_title{
@@ -59,6 +59,18 @@ code {
    font-weight: 300;
    font-family: Menlo, monospace;
    border-radius: .3rem;
+}
+/* markdown-nav */
+.title-anchor{
+  color:#888 !important;
+  padding:4px !important;
+  margin: 0rem !important;
+  height: auto !important;
+  line-height: 1.2rem !important;
+  font-size: .9rem !important;
+}
+.active{
+  color:rgb(30, 144, 255) !important;
 }
 /* head */
 .ant-meu{
