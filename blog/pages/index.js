@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import axios from 'axios'
 import Head from 'next/head'
 import {Row, Col, List} from 'antd'
 import {
@@ -54,6 +55,19 @@ const Home = () => {
       <Footer />
    </>
   )
+}
+
+Home.getInitialProps = async ()=>{
+  const promise = new Promise((resolve)=>{
+    axios('http://127.0.0.1:7001/default/getArticleList').then(
+      (res)=>{
+        console.log('远程获取数据结果:',res.data.data)
+        resolve(res.data)
+      }
+    )
+  })
+
+  return await promise
 }
 
 export default Home

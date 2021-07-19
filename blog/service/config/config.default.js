@@ -23,7 +23,7 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  exports.config = {
+  config.mysql = {
     // database configuration
     client: {
       // host
@@ -35,7 +35,7 @@ module.exports = appInfo => {
       // password
       password: 'root',
       // database
-      database: 'test',    
+      database: 'react_blog',    
     },
     // load into app, default is open
     app: true,
