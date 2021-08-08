@@ -3,7 +3,7 @@ React.useLayoutEffect = useEffect;
 import Link from 'next/link'
 import axios from 'axios'
 import Head from 'next/head'
-import {Row, Col, List} from 'antd'
+import {Row, Col, List, Breadcrumb } from 'antd'
 import {
   CalendarOutlined,
   FolderOpenOutlined,
@@ -25,6 +25,7 @@ const Home = (list) => {
       <Header></Header>
       <Row className="comm-main" type="flex" justify="center">
         <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14} >
+          
           <List
             header={<div className="list-header">最新日志</div>}
             itemLayout="vertical"
@@ -56,7 +57,7 @@ const Home = (list) => {
   )
 }
 
-Home.getInitialProps = async ()=>{
+Home.getInitialProps   = async ()=>{
   const promise = new Promise((resolve)=>{
     axios('http://127.0.0.1:7001/default/getArticleList').then(
       (res)=>{
@@ -70,3 +71,5 @@ Home.getInitialProps = async ()=>{
 }
 
 export default Home
+
+
