@@ -1,5 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
+import axios from 'axios'
+
 import {Row, Col, Breadcrumb, Affix} from 'antd'
 import {
   CalendarOutlined,
@@ -95,6 +97,19 @@ const Detailed = () => {
       <Footer />
    </>
   )
+}
+
+Detailed.getInitialProps = async (context)=>{
+  const promise = new Promise((resolve)=>{
+    let id = context.query.id
+    axios('http://127.0.0.1:7001/default/getArticleById').then(
+      (res)=>{
+        console.log('远程获取数据结果:',res.data.data)
+        resolve(res.data)
+      }
+    )
+  })
+  return await promise
 }
 
 export default Detailed

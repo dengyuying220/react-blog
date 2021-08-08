@@ -27,6 +27,11 @@ body{
 
 
 /* list */
+.list-header {
+  font-size: 1.1rem;
+  padding-left: 1rem;
+}
+
 .list_title{
   font-size:1.3rem;
   color: #1e90ff;
