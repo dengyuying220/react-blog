@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Head from 'next/head'
 import axios from 'axios'
 
@@ -15,9 +15,11 @@ import style from '../styles/pages/detailed.module.scss'
 import ReactMarkdown from 'react-markdown'
 import MarkdownNavbar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-const Detailed = () => {
+const Detailed = (data) => {
+  const [ detail , setDetail ] = useState(data)
+  console.log(data)
 
-  let markdown='# P01:课程介绍和环境搭建\n' +
+  /* let markdown='# P01:课程介绍和环境搭建\n' +
   '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
   '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
    '**这是加粗的文字**\n\n' +
@@ -50,7 +52,7 @@ const Detailed = () => {
   '> aaaaaaaaa\n' +
   '>> bbbbbbbbb\n' +
   '>>> cccccccccc\n\n'+
-  '``` var a=11; ```'
+  '``` var a=11; ```' */
   return (
     <>
       <Head>
@@ -69,12 +71,12 @@ const Detailed = () => {
           <div>
             <div className={style.detailedTitle}>blog开发实战</div>
             <div className={`${style.listIcon}`,`${style.center}` }>
-              <span  className={`${style.listIcon}` }><CalendarOutlined />2021-07-12</span>
-              <span  className={`${style.listIcon}`}><FolderOutlined />案例</span>
-              <span  className={`${style.listIcon}` }><FireOutlined />2021人</span>
+              <span  className={`${style.listIcon}` }><CalendarOutlined />{detail.add_time}</span>
+              <span  className={`${style.listIcon}`}><FolderOutlined />{detail.type_name}</span>
+              <span  className={`${style.listIcon}` }><FireOutlined />{detail.view_count}人</span>
             </div>
             <div className={style.detailedContent}>
-              <ReactMarkdown children={markdown}></ReactMarkdown>
+              <ReactMarkdown children={detail.article_content}></ReactMarkdown>
             </div>
           </div>
         </Col>
@@ -87,7 +89,7 @@ const Detailed = () => {
             <div className="comm_right">
               <MarkdownNavbar
                 // className="comm-box"
-                source={markdown}
+                source={detail.article_content}
                 ordered={false}
               />
             </div>
@@ -102,10 +104,9 @@ const Detailed = () => {
 Detailed.getInitialProps = async (context)=>{
   const promise = new Promise((resolve)=>{
     let id = context.query.id
-    axios('http://127.0.0.1:7001/default/getArticleById').then(
+    axios('http://127.0.0.1:7001/default/getArticleById?id='+id).then(
       (res)=>{
-        console.log('远程获取数据结果:',res.data.data)
-        resolve(res.data)
+        resolve(res.data.data[0])
       }
     )
   })
