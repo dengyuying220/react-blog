@@ -26,7 +26,8 @@ class HomeController extends Controller {
   }
 
   async getArticleById() {
-    let id = this.ctx.query.id
+    console.log(this.ctx)
+    let id = this.ctx.params.id
     let sql = 'SELECT article.id as id,'+
       'article.title as title,'+
       'article.introduce as introduce,'+

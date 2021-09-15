@@ -12,47 +12,30 @@ import Header from '../components/Header'
 import Author from '../components/Author.js'
 import Footer from '../components/Footer.js'
 import style from '../styles/pages/detailed.module.scss'
-import ReactMarkdown from 'react-markdown'
-import MarkdownNavbar from 'markdown-navbar';
+import marked from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
+import MarkdownNavbar from 'markdown-navbar'
 import 'markdown-navbar/dist/navbar.css';
 const Detailed = (data) => {
-  const [ detail , setDetail ] = useState(data)
-  console.log(data)
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function(code, lang) {
+      return hljs.highlightAuto(code).value;
+    },
+    langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
+    pedantic: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+  });
 
-  /* let markdown='# P01:课程介绍和环境搭建\n' +
-  '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
-  '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
-   '**这是加粗的文字**\n\n' +
-  '*这是倾斜的文字*`\n\n' +
-  '***这是斜体加粗的文字***\n\n' +
-  '~~这是加删除线的文字~~ \n\n'+
-  '\`console.log(111)\` \n\n'+
-  '# p02:来个Hello World 初始Vue3.0\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n'+
-  '***\n\n\n' +
-  '# p03:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p04:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '#5 p05:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p06:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p07:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '``` var a=11; ```' */
+  let html =  marked(data.article_content)
+  const [ detail , setDetail ] = useState(data)
+  console.log(html)
   return (
     <>
       <Head>
@@ -75,8 +58,10 @@ const Detailed = (data) => {
               <span  className={`${style.listIcon}`}><FolderOutlined />{detail.type_name}</span>
               <span  className={`${style.listIcon}` }><FireOutlined />{detail.view_count}人</span>
             </div>
-            <div className={style.detailedContent}>
-              <ReactMarkdown children={detail.article_content}></ReactMarkdown>
+            <div className={style.detailedContent}
+              dangerouslySetInnerHTML={{__html: html}}
+            >
+              {/* {html} */}
             </div>
           </div>
         </Col>
@@ -89,7 +74,7 @@ const Detailed = (data) => {
             <div className="comm_right">
               <MarkdownNavbar
                 // className="comm-box"
-                source={detail.article_content}
+                source={html}
                 ordered={false}
               />
             </div>
@@ -104,7 +89,7 @@ const Detailed = (data) => {
 Detailed.getInitialProps = async (context)=>{
   const promise = new Promise((resolve)=>{
     let id = context.query.id
-    axios('http://127.0.0.1:7001/default/getArticleById?id='+id).then(
+    axios('http://127.0.0.1:7001/default/getArticleById'+id).then(
       (res)=>{
         resolve(res.data.data[0])
       }
