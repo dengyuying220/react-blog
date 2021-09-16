@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+React.useLayoutEffect = useEffect;
+
 import Head from 'next/head'
 import axios from 'axios'
 
@@ -15,11 +17,17 @@ import style from '../styles/pages/detailed.module.scss'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
-import MarkdownNavbar from 'markdown-navbar'
-import 'markdown-navbar/dist/navbar.css';
+import Tocify from '../components/tocify.tsx'
+import  servicePath  from '../config/apiUrl'
 const Detailed = (data) => {
+  const tocify = new Tocify()
+  var renderer = new marked.Renderer()
+  renderer.heading = function(text, level, raw) {
+    const anchor = tocify.add(text, level);
+    return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+  };
   marked.setOptions({
-    renderer: new marked.Renderer(),
+    renderer: renderer,
     highlight: function(code, lang) {
       return hljs.highlightAuto(code).value;
     },
@@ -68,15 +76,15 @@ const Detailed = (data) => {
         <Col xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
           <Affix offsetTop={5}>
+
+
             <div className={style.navTitleDiv}>
               <div className={style.navTitle}>文章目录</div>
             </div>
             <div className="comm_right">
-              <MarkdownNavbar
-                // className="comm-box"
-                source={html}
-                ordered={false}
-              />
+              <div className="toc-list">
+                {tocify && tocify.render()}
+              </div>
             </div>
           </Affix>
         </Col>
@@ -89,7 +97,7 @@ const Detailed = (data) => {
 Detailed.getInitialProps = async (context)=>{
   const promise = new Promise((resolve)=>{
     let id = context.query.id
-    axios('http://127.0.0.1:7001/default/getArticleById'+id).then(
+    axios(servicePath.getArticleById+id).then(
       (res)=>{
         resolve(res.data.data[0])
       }

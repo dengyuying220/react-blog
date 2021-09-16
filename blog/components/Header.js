@@ -1,16 +1,47 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+// React.useLayoutEffect = useEffect;
+import axios from 'axios'
+
 import style from '../styles/components/header.module.scss'
 import {
     HomeOutlined,
     YoutubeOutlined,
     SmileOutlined,
   } from '@ant-design/icons';
+  import  servicePath  from '../config/apiUrl'
 
 // import './header.module.scss'
 
 
 import {Row, Col, Menu} from 'antd'
 const Header = () => {
+    const [navArr, setNavArr] = useState([]) 
+    useEffect(()=>{
+        console.log(11111111111)
+        const fetchData = async ()=>{
+            const result = await axios(servicePath.getTypeInfo).then(
+                (res)=>{
+                //   console.log('远程获取数据结果:',res)
+                  return res
+                }
+            )
+            console.log('result:',result)
+
+            setNavArr(result.data.data)
+            console.log('navArr:',navArr)
+
+            
+        }
+        fetchData()
+        
+    }, [])
+    const handleClick = (e)=> {
+        if(e.key==1) {
+            
+        }
+    }
+    // console.log(result)
+
     return (
         <div className={style.header}>
             <Row type="flex" justify="center">
@@ -38,5 +69,18 @@ const Header = () => {
         </div>
     )
 }
+
+// Header.getInitialProps   = async ()=>{
+//     const promise = new Promise((resolve)=>{
+//       axios(servicePath.getTypeInfo).then(
+//         (res)=>{
+//           console.log('远程获取数据结果:',res)
+//           resolve(res)
+//         }
+//       )
+//     })
+  
+//     return await promise
+//   }
 
 export default Header;
